@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  portfolio.server.api:
+    image: portfolioserverapi
+    build:
+      context: .
+      dockerfile: Portfolio.Server.Api\Dockerfile
