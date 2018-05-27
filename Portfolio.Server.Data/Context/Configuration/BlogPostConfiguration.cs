@@ -7,9 +7,9 @@ using System.Text;
 
 namespace Portfolio.Server.Data.Context.Configuration
 {
-    public class BlogPostConfiguration : IEntityTypeConfiguration<BlogPostTag>
+    public class BlogPostConfiguration : IEntityTypeConfiguration<BlogPost>
     {
-        public void Configure(EntityTypeBuilder<BlogPostTag> builder)
+        public void Configure(EntityTypeBuilder<BlogPost> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Content).IsRequired();

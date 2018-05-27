@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace Portfolio.Server.Data.Model
 {
-    public class BlogPost
+    public class BlogPost: Entity
     {
-        public Guid Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime DateAdded { get; set; }

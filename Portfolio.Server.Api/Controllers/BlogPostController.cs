@@ -1,30 +1,44 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using Portfolio.Server.Core;
+using Portfolio.Server.Core.Dtos;
 
 namespace Portfolio.Server.Api.Controllers
-{
+{ 
     [Produces("application/json")]
-    [Route("api/BlogPost")]
+    [Route("api/blogpost")]
     public class BlogPostController : Controller
     {
+        private readonly IBlogPostService _blogPostService;
+
+        public BlogPostController(IBlogPostService blogPostService)
+        {
+            _blogPostService = blogPostService;
+        }
+
         // GET: api/BlogPost
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get()
         {
-            return new string[] { "value1", "value2" };
+            var data = await _blogPostService.GetAllBlogPosts();
+            return Ok(data);
         }
 
         // GET: api/BlogPost/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            return "value";
+            var data = await _blogPostService.GetBlogPostById(id);
+            return Ok(data);
         }
         
-        // POST: api/BlogPost
+        // POST: api/BlogPost 
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<IActionResult> Post([FromBody]BlogPostDto blogPost)
         {
+            var id = await _blogPostService.AddBlogPost(blogPost);
+            return Ok(id);
         }
         
         // PUT: api/BlogPost/5

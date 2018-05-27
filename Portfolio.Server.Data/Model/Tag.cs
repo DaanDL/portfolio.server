@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Portfolio.Server.Data.Model
 {
-    public class Tag
+    public class Tag:Entity
     {
-        public int Id { get; set; }
         public string TagName { get; set; }
         public ICollection<BlogPostTag> BlogPostTags { get; set; }
     }

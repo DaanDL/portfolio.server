@@ -4,10 +4,15 @@ using Portfolio.Server.Data.Model;
 
 namespace Portfolio.Server.Data.Context
 {
-    public class BlogPostContext: DbContext
+    public class BlogPostContext : DbContext, IBlogPostContext
     {
-        public DbSet<BlogPostTag> BlogPosts { get; set; }
+        public BlogPostContext(DbContextOptions<BlogPostContext> options) : base(options)
+        {
+        }
+
+        public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<Author> Authors { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
