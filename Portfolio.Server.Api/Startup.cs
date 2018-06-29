@@ -35,6 +35,8 @@ namespace Portfolio.Server.Api
             {
                 c.SwaggerDoc("v1", new Info { Title = "Portfolio Api", Version = "v1" });
             });
+
+            services.AddCors();
         }
          
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +47,7 @@ namespace Portfolio.Server.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
 
             app.UseMvc();
 
@@ -57,6 +60,7 @@ namespace Portfolio.Server.Api
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Portfolio API V1");
             });
+
         }
     }
 }

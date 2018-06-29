@@ -13,6 +13,7 @@ namespace Portfolio.Server.Data.Repositories
         Task<BlogPost> GetById(Guid id);
         Task Update(BlogPost entity);
         Task<Author> GetAuthorById(Guid id);
+        Task<Author> GetFirstAuthor();
         Task<IEnumerable<Tag>> GetTagsById(List<Guid> tagIds);
     }
 }

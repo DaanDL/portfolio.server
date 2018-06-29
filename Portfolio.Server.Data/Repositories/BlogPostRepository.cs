@@ -21,6 +21,12 @@ namespace Portfolio.Server.Data.Repositories
             return author;
         }
 
+        public async Task<Author> GetFirstAuthor()
+        {
+            var author = await Context.Authors.FirstOrDefaultAsync();
+            return author;
+        }
+
         public async Task<IEnumerable<Tag>> GetTagsById(List<Guid> tagIds)
         {
             var tags = await Context.Tags.Where(x => tagIds.Contains(x.Id)).ToListAsync();
